@@ -11,6 +11,8 @@
 		1482E3F92AA3D00100F2DF5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1482E3F82AA3D00100F2DF5A /* Assets.xcassets */; };
 		1482E3FC2AA3D00100F2DF5A /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1482E3FA2AA3D00100F2DF5A /* MainMenu.xib */; };
 		1482E3FE2AA3D00100F2DF5A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1482E3FD2AA3D00100F2DF5A /* main.m */; };
+		1482E4072AA3ED3800F2DF5A /* ImportsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1482E4062AA3ED3800F2DF5A /* ImportsController.m */; };
+		1482E40A2AA3ED5100F2DF5A /* ExportsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1482E4092AA3ED5100F2DF5A /* ExportsController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +23,10 @@
 		1482E3FB2AA3D00100F2DF5A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		1482E3FD2AA3D00100F2DF5A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1482E3FF2AA3D00100F2DF5A /* NFSManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NFSManager.entitlements; sourceTree = "<group>"; };
+		1482E4052AA3ED3800F2DF5A /* ImportsController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImportsController.h; sourceTree = "<group>"; };
+		1482E4062AA3ED3800F2DF5A /* ImportsController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImportsController.m; sourceTree = "<group>"; };
+		1482E4082AA3ED5100F2DF5A /* ExportsController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExportsController.h; sourceTree = "<group>"; };
+		1482E4092AA3ED5100F2DF5A /* ExportsController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExportsController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +65,10 @@
 				1482E3FA2AA3D00100F2DF5A /* MainMenu.xib */,
 				1482E3FD2AA3D00100F2DF5A /* main.m */,
 				1482E3FF2AA3D00100F2DF5A /* NFSManager.entitlements */,
+				1482E4052AA3ED3800F2DF5A /* ImportsController.h */,
+				1482E4062AA3ED3800F2DF5A /* ImportsController.m */,
+				1482E4082AA3ED5100F2DF5A /* ExportsController.h */,
+				1482E4092AA3ED5100F2DF5A /* ExportsController.m */,
 			);
 			path = NFSManager;
 			sourceTree = "<group>";
@@ -134,6 +144,8 @@
 			files = (
 				1482E3FE2AA3D00100F2DF5A /* main.m in Sources */,
 				1482E3F72AA3CFFF00F2DF5A /* AppDelegate.m in Sources */,
+				1482E4072AA3ED3800F2DF5A /* ImportsController.m in Sources */,
+				1482E40A2AA3ED5100F2DF5A /* ExportsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
