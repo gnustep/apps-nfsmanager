@@ -15,9 +15,24 @@
         <customObject id="e2E-vG-thR" customClass="ImportsController">
             <connections>
                 <outlet property="add" destination="OJn-rJ-GJE" id="HXD-NY-1Ku"/>
+                <outlet property="expertOptionsWindow" destination="iSt-Wa-owX" id="ejg-n6-WyG"/>
+                <outlet property="importFromServerWindow" destination="m5W-Xf-XJx" id="Yg3-GR-abK"/>
+                <outlet property="mountRetries" destination="zjl-TG-bSF" id="CyQ-Pp-9I6"/>
+                <outlet property="mountThreadPopup" destination="JZ0-1b-xJK" id="TqW-ng-s9g"/>
+                <outlet property="mountTimeout" destination="LUK-Yq-UV8" id="3DQ-sO-txg"/>
+                <outlet property="nfsRetries" destination="IhA-63-dy4" id="XtB-qo-EDO"/>
+                <outlet property="nfsTimeout" destination="yLk-bz-G61" id="2sS-Rh-xyU"/>
+                <outlet property="readBufferSize" destination="9pv-Z2-hjB" id="rML-r0-xrm"/>
+                <outlet property="readWritePopup" destination="T6E-UM-Jla" id="YL4-tj-R7z"/>
+                <outlet property="remoteDirectory" destination="kV5-Es-c22" id="8cW-3f-A36"/>
                 <outlet property="remove" destination="Jdq-40-4Pn" id="Qky-PP-Me5"/>
+                <outlet property="retryPopup" destination="OZn-VD-aHg" id="YRS-t1-12A"/>
+                <outlet property="serverIPPort" destination="XSz-1t-8V8" id="1EJ-mj-Lud"/>
+                <outlet property="serverName" destination="l0v-bh-QjV" id="huN-4I-bCf"/>
+                <outlet property="setuidPopup" destination="Fqo-24-btn" id="zqD-RR-9kU"/>
                 <outlet property="table" destination="5eh-qJ-xOZ" id="W8n-S7-HbZ"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="yht-Fk-sCH"/>
+                <outlet property="writeBufferSize" destination="ppa-Tm-A1t" id="6CQ-yN-pVg"/>
             </connections>
         </customObject>
         <customObject id="Gq7-QA-gfa" customClass="ExportsController"/>
@@ -812,10 +827,13 @@
                         <buttonCell key="cell" type="push" title="Select" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4qV-tj-5RI">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
+                            <connections>
+                                <action selector="select:" target="e2E-vG-thR" id="y8T-dM-4Y8"/>
+                            </connections>
                         </buttonCell>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bEA-x5-zp5">
-                        <rect key="frame" x="439" y="-7" width="125" height="32"/>
+                        <rect key="frame" x="447" y="-1" width="125" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Revert" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="O4X-zv-LhA">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -823,7 +841,7 @@
                         </buttonCell>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6gB-Mf-VD5">
-                        <rect key="frame" x="559" y="-7" width="125" height="32"/>
+                        <rect key="frame" x="567" y="-1" width="125" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="aD3-Kj-9WN">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -882,6 +900,9 @@ DQ
                                 </items>
                             </menu>
                         </popUpButtonCell>
+                        <connections>
+                            <action selector="selectMountPermissions:" target="e2E-vG-thR" id="M40-kY-OZy"/>
+                        </connections>
                     </popUpButton>
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JZ0-1b-xJK">
                         <rect key="frame" x="159" y="38" width="113" height="25"/>
@@ -896,6 +917,9 @@ DQ
                                 </items>
                             </menu>
                         </popUpButtonCell>
+                        <connections>
+                            <action selector="selectMountThread:" target="e2E-vG-thR" id="L5P-9A-Cfr"/>
+                        </connections>
                     </popUpButton>
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fqo-24-btn">
                         <rect key="frame" x="443" y="67" width="168" height="25"/>
@@ -910,6 +934,9 @@ DQ
                                 </items>
                             </menu>
                         </popUpButtonCell>
+                        <connections>
+                            <action selector="selectSetuidAction:" target="e2E-vG-thR" id="43F-uz-QXd"/>
+                        </connections>
                     </popUpButton>
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OZn-VD-aHg">
                         <rect key="frame" x="443" y="36" width="168" height="25"/>
@@ -927,21 +954,27 @@ DQ
                                 </items>
                             </menu>
                         </popUpButtonCell>
+                        <connections>
+                            <action selector="selectRetryMethod:" target="e2E-vG-thR" id="9Kp-DK-NY1"/>
+                        </connections>
                     </popUpButton>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ot4-uD-vGR">
-                        <rect key="frame" x="318" y="-7" width="126" height="32"/>
+                        <rect key="frame" x="323" y="-1" width="126" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Expert Options" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="TUh-6e-zM8">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="makeKeyAndOrderFront:" target="iSt-Wa-owX" id="EfN-mb-9Ku"/>
+                        </connections>
                     </button>
                 </subviews>
             </view>
             <point key="canvasLocation" x="308.5" y="398"/>
         </window>
-        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" frameAutosaveName="" animationBehavior="default" id="iSt-Wa-owX">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+        <window title="Expert Options" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="iSt-Wa-owX">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="457" y="501" width="236" height="257"/>
             <rect key="screenRect" x="0.0" y="0.0" width="3840" height="2135"/>
@@ -1085,6 +1118,9 @@ DQ
 Gw
 </string>
                         </buttonCell>
+                        <connections>
+                            <action selector="cancelExpertOptions:" target="e2E-vG-thR" id="Qvl-OX-Rf4"/>
+                        </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ssr-6J-8DQ">
                         <rect key="frame" x="122" y="0.0" width="56" height="32"/>
@@ -1096,10 +1132,90 @@ Gw
 Gw
 </string>
                         </buttonCell>
+                        <connections>
+                            <action selector="setExpertOptions:" target="e2E-vG-thR" id="DLq-sl-zV1"/>
+                        </connections>
                     </button>
                 </subviews>
             </view>
             <point key="canvasLocation" x="66" y="813.5"/>
+        </window>
+        <window title="Import From NFS Server" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="m5W-Xf-XJx">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="457" y="501" width="481" height="126"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="3840" height="2135"/>
+            <view key="contentView" id="J7D-rl-ybj">
+                <rect key="frame" x="0.0" y="0.0" width="481" height="126"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iyL-K8-ZFq">
+                        <rect key="frame" x="45" y="86" width="83" height="16"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="Server Name" id="dKP-sR-Z3t">
+                            <font key="font" usesAppearanceFont="YES"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l0v-bh-QjV">
+                        <rect key="frame" x="147" y="85" width="314" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="t9x-0n-Hyz">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TbP-AG-uMf">
+                        <rect key="frame" x="18" y="50" width="110" height="16"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="Remote Directory" id="xnP-tj-Qoo">
+                            <font key="font" usesAppearanceFont="YES"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kV5-Es-c22">
+                        <rect key="frame" x="147" y="50" width="314" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="13v-XQ-WIq">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s7n-Ou-VM2">
+                        <rect key="frame" x="140" y="7" width="76" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HXW-Ph-fPZ">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="cancelImport:" target="e2E-vG-thR" id="RVX-DB-Bjo"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OJH-p2-4Nc">
+                        <rect key="frame" x="225" y="7" width="54" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Xv6-WF-WlP">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="okImport:" target="e2E-vG-thR" id="Utc-7I-WXS"/>
+                        </connections>
+                    </button>
+                </subviews>
+            </view>
+            <point key="canvasLocation" x="511.5" y="735"/>
         </window>
     </objects>
 </document>

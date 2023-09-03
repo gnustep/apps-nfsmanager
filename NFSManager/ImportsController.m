@@ -22,4 +22,44 @@
 
 // Imports Delegate/DataSource
 
+- (IBAction)selectRetryMethod:(id)sender
+{
+    
+}
+
+- (IBAction)selectSetuidAction:(id)sender
+{
+    
+}
+
+- (IBAction)selectMountThread:(id)sender
+{
+    
+}
+
+- (IBAction)selectMountPermissions:(id)sender
+{
+    
+}
+
+- (IBAction)select:(id)sender
+{
+    
+}
+
+- (IBAction) setExpertOptions: (id)sender
+{
+    
+}
+
+- (IBAction)okImport:(id)sender {
+}
+
+- (IBAction)cancelImport:(id)sender {
+}
+
+- (IBAction) cancelExpertOptions: (id)sender
+{
+    
+}
 @end
