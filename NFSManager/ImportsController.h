@@ -10,7 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class NSButton, NSWindow, NSPopUpButton, NSTextField;
+@class NSButton;
+@class NSWindow;
+@class NSPopUpButton;
+@class NSTextField;
 
 @interface ImportsController : NSObject <NSTableViewDelegate, NSTableViewDataSource>
 
