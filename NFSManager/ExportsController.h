@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong) IBOutlet NSTableView *table;
 @property (strong) IBOutlet NSBrowser *readOnlyBrowser;
 @property (strong) IBOutlet NSBrowser *readWriteBrowser;
-@property (weak) IBOutlet NSBrowser *rootAccessBrowser;
+@property (strong) IBOutlet NSBrowser *rootAccessBrowser;
 @property (strong) IBOutlet NSButton *allowUnknownUsers;
 @property (strong) IBOutlet NSPopUpButton *unknownUsersPopup;
 
