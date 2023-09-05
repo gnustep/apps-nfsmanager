@@ -14,8 +14,12 @@ NS_ASSUME_NONNULL_BEGIN
 @class NSWindow;
 @class NSPopUpButton;
 @class NSTextField;
+@class NSMutableArray;
 
 @interface ImportsController : NSObject <NSTableViewDelegate, NSTableViewDataSource>
+{
+    NSMutableArray *_nfsImportsConfig;
+}
 
 // Imports manager outlets
 @property (strong) IBOutlet NSWindow *window;

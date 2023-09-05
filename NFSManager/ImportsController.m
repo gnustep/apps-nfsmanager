@@ -9,6 +9,23 @@
 
 @implementation ImportsController
 
+- (instancetype) init
+{
+    if ((self = [super init]) != nil)
+    {
+        _nfsImportsConfig = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
+
+- (void) dealloc
+{
+#ifdef GNUSTEP
+    RELEASE(_nfsImportsConfig);
+    [super dealloc];
+#endif
+}
+
 // Imports portion of the delegate
 
 - (IBAction) add: (id)sender
@@ -71,5 +88,9 @@
 {
     
 }
+
+// Table Delegate
+
+// Table DataSource
 
 @end

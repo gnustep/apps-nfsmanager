@@ -156,16 +156,18 @@
                 <rect key="frame" x="0.0" y="0.0" width="697" height="356"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <box verticalHuggingPriority="750" ambiguous="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="eQc-8M-OcC">
+                    <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="eQc-8M-OcC">
                         <rect key="frame" x="12" y="146" width="673" height="5"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     </box>
-                    <scrollView ambiguous="YES" autohidesScrollers="YES" horizontalLineScroll="24" horizontalPageScroll="10" verticalLineScroll="24" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Of1-pw-tFy">
+                    <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="24" horizontalPageScroll="10" verticalLineScroll="24" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Of1-pw-tFy">
                         <rect key="frame" x="12" y="163" width="545" height="173"/>
-                        <clipView key="contentView" ambiguous="YES" id="RK8-Pa-T6s">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
+                        <clipView key="contentView" id="RK8-Pa-T6s">
                             <rect key="frame" x="1" y="1" width="543" height="171"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <tableView verticalHuggingPriority="750" ambiguous="YES" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" rowHeight="24" headerView="aF0-CT-hcg" id="5eh-qJ-xOZ">
+                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" rowHeight="24" headerView="aF0-CT-hcg" id="5eh-qJ-xOZ">
                                     <rect key="frame" x="0.0" y="0.0" width="543" height="143"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <size key="intercellSpacing" width="17" height="0.0"/>
@@ -217,8 +219,9 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </tableHeaderView>
                     </scrollView>
-                    <button verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OJn-rJ-GJE">
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OJn-rJ-GJE">
                         <rect key="frame" x="567" y="194" width="125" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Add" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MZf-LD-8fU">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -227,8 +230,9 @@
                             <action selector="add:" target="e2E-vG-thR" id="lAA-8J-sQd"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jdq-40-4Pn">
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jdq-40-4Pn">
                         <rect key="frame" x="567" y="162" width="125" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Remove" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Je3-oT-MQa">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -321,23 +325,6 @@ DQ
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T6E-UM-Jla">
-                        <rect key="frame" x="156" y="67" width="113" height="25"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <popUpButtonCell key="cell" type="push" title="Read/Write" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="CD3-dD-O6r" id="c3j-bt-rOn">
-                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="menu"/>
-                            <menu key="menu" id="5HJ-3P-EdN">
-                                <items>
-                                    <menuItem title="Read/Write" state="on" id="CD3-dD-O6r"/>
-                                    <menuItem title="Read Only" id="CFb-4m-KbF"/>
-                                </items>
-                            </menu>
-                        </popUpButtonCell>
-                        <connections>
-                            <action selector="selectMountPermissions:" target="e2E-vG-thR" id="M40-kY-OZy"/>
-                        </connections>
-                    </popUpButton>
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JZ0-1b-xJK">
                         <rect key="frame" x="159" y="38" width="113" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -403,17 +390,24 @@ DQ
                             <action selector="makeKeyAndOrderFront:" target="iSt-Wa-owX" id="EfN-mb-9Ku"/>
                         </connections>
                     </button>
+                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T6E-UM-Jla">
+                        <rect key="frame" x="159" y="68" width="113" height="25"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <popUpButtonCell key="cell" type="push" title="Read/Write" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="CD3-dD-O6r" id="c3j-bt-rOn">
+                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="menu"/>
+                            <menu key="menu" id="5HJ-3P-EdN">
+                                <items>
+                                    <menuItem title="Read/Write" state="on" id="CD3-dD-O6r"/>
+                                    <menuItem title="Read Only" id="CFb-4m-KbF"/>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                        <connections>
+                            <action selector="selectMountPermissions:" target="e2E-vG-thR" id="M40-kY-OZy"/>
+                        </connections>
+                    </popUpButton>
                 </subviews>
-                <constraints>
-                    <constraint firstAttribute="trailing" secondItem="Jdq-40-4Pn" secondAttribute="trailing" constant="53" id="AHk-Mi-UjB"/>
-                    <constraint firstAttribute="trailing" secondItem="Of1-pw-tFy" secondAttribute="trailing" constant="140" id="PB2-jW-mZ8"/>
-                    <constraint firstItem="OJn-rJ-GJE" firstAttribute="leading" secondItem="Of1-pw-tFy" secondAttribute="trailing" constant="17" id="SiC-vI-NVs"/>
-                    <constraint firstItem="Jdq-40-4Pn" firstAttribute="leading" secondItem="Of1-pw-tFy" secondAttribute="trailing" constant="17" id="U5J-ZX-Ilo"/>
-                    <constraint firstItem="Of1-pw-tFy" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="12" id="Z2B-Zl-OmU"/>
-                    <constraint firstItem="eQc-8M-OcC" firstAttribute="top" secondItem="Of1-pw-tFy" secondAttribute="bottom" constant="14" id="Zo1-cU-tlm"/>
-                    <constraint firstAttribute="trailing" secondItem="OJn-rJ-GJE" secondAttribute="trailing" constant="77" id="apm-qg-HJG"/>
-                    <constraint firstItem="Of1-pw-tFy" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" symbolic="YES" id="yWj-xV-DkL"/>
-                </constraints>
             </view>
             <point key="canvasLocation" x="308.5" y="398"/>
         </window>
@@ -563,7 +557,7 @@ Gw
 </string>
                         </buttonCell>
                         <connections>
-                            <action selector="cancelExpertOptions:" target="e2E-vG-thR" id="Qvl-OX-Rf4"/>
+                            <action selector="performClose:" target="iSt-Wa-owX" id="NwM-x1-Jvb"/>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ssr-6J-8DQ">
@@ -640,7 +634,7 @@ Gw
 </string>
                         </buttonCell>
                         <connections>
-                            <action selector="cancelImport:" target="e2E-vG-thR" id="RVX-DB-Bjo"/>
+                            <action selector="performClose:" target="m5W-Xf-XJx" id="mDD-De-bwW"/>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OJH-p2-4Nc">

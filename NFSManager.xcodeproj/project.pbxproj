@@ -13,6 +13,7 @@
 		1482E3FE2AA3D00100F2DF5A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1482E3FD2AA3D00100F2DF5A /* main.m */; };
 		1482E4072AA3ED3800F2DF5A /* ImportsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1482E4062AA3ED3800F2DF5A /* ImportsController.m */; };
 		1482E40A2AA3ED5100F2DF5A /* ExportsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1482E4092AA3ED5100F2DF5A /* ExportsController.m */; };
+		1482E40D2AA6CD0300F2DF5A /* NFSImportParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 1482E40C2AA6CD0300F2DF5A /* NFSImportParameters.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,8 @@
 		1482E4062AA3ED3800F2DF5A /* ImportsController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImportsController.m; sourceTree = "<group>"; };
 		1482E4082AA3ED5100F2DF5A /* ExportsController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExportsController.h; sourceTree = "<group>"; };
 		1482E4092AA3ED5100F2DF5A /* ExportsController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExportsController.m; sourceTree = "<group>"; };
+		1482E40B2AA6CD0300F2DF5A /* NFSImportParameters.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NFSImportParameters.h; sourceTree = "<group>"; };
+		1482E40C2AA6CD0300F2DF5A /* NFSImportParameters.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NFSImportParameters.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +72,8 @@
 				1482E4062AA3ED3800F2DF5A /* ImportsController.m */,
 				1482E4082AA3ED5100F2DF5A /* ExportsController.h */,
 				1482E4092AA3ED5100F2DF5A /* ExportsController.m */,
+				1482E40B2AA6CD0300F2DF5A /* NFSImportParameters.h */,
+				1482E40C2AA6CD0300F2DF5A /* NFSImportParameters.m */,
 			);
 			path = NFSManager;
 			sourceTree = "<group>";
@@ -143,6 +148,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1482E3FE2AA3D00100F2DF5A /* main.m in Sources */,
+				1482E40D2AA6CD0300F2DF5A /* NFSImportParameters.m in Sources */,
 				1482E3F72AA3CFFF00F2DF5A /* AppDelegate.m in Sources */,
 				1482E4072AA3ED3800F2DF5A /* ImportsController.m in Sources */,
 				1482E40A2AA3ED5100F2DF5A /* ExportsController.m in Sources */,
