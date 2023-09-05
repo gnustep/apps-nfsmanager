@@ -10,6 +10,7 @@
 @implementation ImportsController
 
 // Imports portion of the delegate
+
 - (IBAction) add: (id)sender
 {
     [self.importFromServerWindow makeKeyAndOrderFront: sender];
@@ -47,19 +48,28 @@
     
 }
 
+// Expert options
+
 - (IBAction) setExpertOptions: (id)sender
 {
     
-}
-
-- (IBAction)okImport:(id)sender {
-}
-
-- (IBAction)cancelImport:(id)sender {
 }
 
 - (IBAction) cancelExpertOptions: (id)sender
 {
     
 }
+
+// Imports from NFS window
+
+- (IBAction)okImport:(id)sender
+{
+    
+}
+
+- (IBAction)cancelImport:(id)sender
+{
+    
+}
+
 @end
