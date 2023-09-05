@@ -763,16 +763,25 @@ DQ
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </box>
                     <browser verticalHuggingPriority="750" fixedFrame="YES" allowsExpansionToolTips="YES" enabled="YES" hasHorizontalScroller="YES" allowsEmptySelection="YES" defaultColumnWidth="100" minColumnWidth="100" maxVisibleColumns="1" titled="YES" separatesColumns="YES" allowsTypeSelect="YES" columnResizingType="auto" translatesAutoresizingMaskIntoConstraints="NO" id="IhK-HM-29n">
-                        <rect key="frame" x="15" y="108" width="128" height="131"/>
+                        <rect key="frame" x="15" y="108" width="128" height="103"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <connections>
+                            <outlet property="delegate" destination="Gq7-QA-gfa" id="jx5-PQ-omb"/>
+                        </connections>
                     </browser>
                     <browser verticalHuggingPriority="750" fixedFrame="YES" allowsExpansionToolTips="YES" enabled="YES" hasHorizontalScroller="YES" allowsEmptySelection="YES" defaultColumnWidth="100" minColumnWidth="100" maxVisibleColumns="1" titled="YES" separatesColumns="YES" allowsTypeSelect="YES" columnResizingType="auto" translatesAutoresizingMaskIntoConstraints="NO" id="EOT-yH-Wey">
-                        <rect key="frame" x="151" y="108" width="134" height="131"/>
+                        <rect key="frame" x="151" y="108" width="134" height="103"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <connections>
+                            <outlet property="delegate" destination="Gq7-QA-gfa" id="sQ9-bM-D2t"/>
+                        </connections>
                     </browser>
                     <browser verticalHuggingPriority="750" fixedFrame="YES" allowsExpansionToolTips="YES" enabled="YES" hasHorizontalScroller="YES" allowsEmptySelection="YES" defaultColumnWidth="100" minColumnWidth="100" maxVisibleColumns="1" titled="YES" separatesColumns="YES" allowsTypeSelect="YES" columnResizingType="auto" translatesAutoresizingMaskIntoConstraints="NO" id="SKf-Fo-lWM">
-                        <rect key="frame" x="293" y="108" width="134" height="131"/>
+                        <rect key="frame" x="293" y="108" width="134" height="103"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <connections>
+                            <outlet property="delegate" destination="Gq7-QA-gfa" id="Mf0-Kf-Z3E"/>
+                        </connections>
                     </browser>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bbq-AH-1Uz">
                         <rect key="frame" x="4" y="73" width="84" height="32"/>
