@@ -91,6 +91,11 @@
 
 // Table Delegate
 
-// Table DataSource
+// Table Data Source
+
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
+{
+    return [_nfsImportsConfig count];
+}
 
 @end
