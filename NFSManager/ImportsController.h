@@ -47,6 +47,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong) IBOutlet NSTextField *writeBufferSize;
 @property (strong) IBOutlet NSTextField *serverIPPort;
 
+// Load the raw file and convert it into our data structure...
+- (NSMutableArray *) loadFstabIntoDictionary;
+
 // Imports manager
 - (IBAction) add: (id)sender;
 - (IBAction) remove: (id)sender;
