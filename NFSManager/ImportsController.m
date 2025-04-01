@@ -19,7 +19,19 @@
         _nfsImportsConfig = [self loadFstabIntoDictionary];
         _columnsArray = [NSArray arrayWithObjects: @"fs_spec",@"fs_file",@"fs_vfstype",
                          @"fs_mntops",@"fs_type",@"fs_freq",nil];
+        _columnNames = [NSDictionary dictionaryWithObjectsAndKeys:
+                        @"Spec", @"fs_spec",
+                        @"File", @"fs_file",
+                        @"File System Type", @"fs_vfstype",
+                        @"Mount Options", @"fs_mntops",
+                        @"Version", @"fs_type",
+                        @"Frequency", @"fs_freq", nil];
         NSLog(@"fstab = %@", _nfsImportsConfig);
+
+#ifdef GNUSTEP
+        RETAIN(_columnsArray);
+        RETAIN(_columnNames);
+#endif
     }
     return self;
 }
@@ -33,14 +45,24 @@
 #endif
 }
 
+- (void) removeTableColumns
+{
+    while ([[self.table tableColumns] count] > 0)
+    {
+        [self.table removeTableColumn:
+         [[self.table tableColumns] objectAtIndex:0]];
+    }
+}
+
 - (void) setupTableColumns
 {
     NSEnumerator *en = [_columnsArray objectEnumerator];
-    NSString *colName = nil;
+    NSString *ident = nil;
     
-    while(colName = [en nextObject])
+    while(ident = [en nextObject])
     {
-        NSTableColumn *tc = [[NSTableColumn alloc] initWithIdentifier: colName];
+        NSTableColumn *tc = [[NSTableColumn alloc] initWithIdentifier: ident];
+        NSString *colName = [_columnNames objectForKey: ident];
         
         [tc setTitle: colName];
         [self.table addTableColumn: tc];
@@ -49,6 +71,7 @@
 
 - (void) awakeFromNib
 {
+    [self removeTableColumns];
     [self setupTableColumns];
 }
 
