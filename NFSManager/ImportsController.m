@@ -5,6 +5,8 @@
 //  Created by Gregory John Casamento on 9/2/23.
 //
 
+#import <AppKit/NSTableColumn.h>
+
 #import "ImportsController.h"
 
 @implementation ImportsController
@@ -14,6 +16,8 @@
     if ((self = [super init]) != nil)
     {
         _nfsImportsConfig = [self loadFstabIntoDictionary];
+        _columnsArray = [NSArray arrayWithObjects: @"fs_spec",@"fs_file",@"fs_vfstype",
+                         @"fs_mntops",@"fs_type",@"fs_freq",nil];
         NSLog(@"fstab = %@", _nfsImportsConfig);
     }
     return self;
@@ -23,8 +27,28 @@
 {
 #ifdef GNUSTEP
     RELEASE(_nfsImportsConfig);
+    RELEASE(_columnsArray);
     [super dealloc];
 #endif
+}
+
+- (void) setupTableColumns
+{
+    NSEnumerator *en = [_columnsArray objectEnumerator];
+    NSString *colName = nil;
+    
+    while(colName = [en nextObject])
+    {
+        NSTableColumn *tc = [[NSTableColumn alloc] initWithIdentifier: colName];
+        
+        [tc setTitle: colName];
+        [self.table addTableColumn: tc];
+    }
+}
+
+- (void) awakeFromNib
+{
+    [self setupTableColumns];
 }
 
 // Load
@@ -179,6 +203,9 @@
 
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
-    return nil;
+    NSString *ident = [tableColumn identifier];
+    NSDictionary *dict = [_nfsImportsConfig objectAtIndex: row];
+    NSString *value = [dict objectForKey: ident];
+    return value;
 }
 @end

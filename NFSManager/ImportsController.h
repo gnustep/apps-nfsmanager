@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ImportsController : NSObject <NSTableViewDelegate, NSTableViewDataSource>
 {
     NSMutableArray *_nfsImportsConfig;
+    NSArray *_columnsArray;
 }
 
 // Imports manager outlets
@@ -49,6 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 // Load the raw file and convert it into our data structure...
 - (NSMutableArray *) loadFstabIntoDictionary;
+- (void) setupTableColumns;
 
 // Imports manager
 - (IBAction) add: (id)sender;
