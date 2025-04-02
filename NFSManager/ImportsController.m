@@ -147,7 +147,7 @@
 // Imports portion of the delegate
 - (IBAction) add: (id)sender
 {
-    
+    [self.importFromServerWindow makeKeyAndOrderFront: self];
 }
 
 - (IBAction) remove: (id)sender
