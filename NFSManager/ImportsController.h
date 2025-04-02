@@ -17,11 +17,12 @@ NS_ASSUME_NONNULL_BEGIN
 @class NSMutableArray;
 
 @interface ImportsController : NSObject <NSTableViewDelegate, NSTableViewDataSource>
-{
-    NSMutableArray *_nfsImportsConfig;
-    NSArray *_columnsArray;
-    NSDictionary *_columnNames;
-}
+
+// Ivars...
+@property (strong) NSMutableArray *nfsImportsConfig;
+@property (strong) NSArray *columnsArray;
+@property (strong) NSDictionary *columnNames;
+@property (strong) NSMutableArray *displayEntries;
 
 // Imports manager outlets
 @property (strong) IBOutlet NSWindow *window;
@@ -53,6 +54,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSMutableArray *) loadFstabIntoDictionary;
 - (void) setupTableColumns;
 - (void) removeTableColumns;
+- (void) refreshData;
 
 // Imports manager
 - (IBAction) add: (id)sender;
