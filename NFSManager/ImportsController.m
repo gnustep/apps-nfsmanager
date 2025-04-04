@@ -274,7 +274,7 @@
 
 - (IBAction) cancelImport:(id)sender
 {
-    
+    [self.importFromServerWindow performClose: self];
 }
 
 // Table Delegate
