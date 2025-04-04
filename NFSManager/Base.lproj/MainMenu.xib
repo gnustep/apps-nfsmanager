@@ -18,6 +18,7 @@
                 <outlet property="add" destination="OJn-rJ-GJE" id="HXD-NY-1Ku"/>
                 <outlet property="expertOptionsWindow" destination="iSt-Wa-owX" id="ejg-n6-WyG"/>
                 <outlet property="importFromServerWindow" destination="m5W-Xf-XJx" id="Yg3-GR-abK"/>
+                <outlet property="mountPoint" destination="oSF-bU-LzK" id="qZS-kM-3fc"/>
                 <outlet property="mountRetries" destination="zjl-TG-bSF" id="CyQ-Pp-9I6"/>
                 <outlet property="mountThreadPopup" destination="JZ0-1b-xJK" id="TqW-ng-s9g"/>
                 <outlet property="mountTimeout" destination="LUK-Yq-UV8" id="3DQ-sO-txg"/>

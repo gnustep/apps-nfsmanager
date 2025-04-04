@@ -32,6 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong) IBOutlet NSPopUpButton *mountThreadPopup;
 @property (strong) IBOutlet NSPopUpButton *setuidPopup;
 @property (strong) IBOutlet NSPopUpButton *retryPopup;
+@property (strong) IBOutlet NSTextField *mountPoint;
 
 @property (strong) IBOutlet NSButton *add;
 @property (strong) IBOutlet NSButton *remove;
@@ -55,7 +56,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) setupTableColumns;
 - (void) removeTableColumns;
 - (void) refreshData;
-
+- (NSMutableDictionary *) buildEntrySpec: (NSString *)spec
+                                    file: (NSString *)file
+                                 vfsType: (NSString *)vfsType
+                                mountOps: (NSString *)mountOps
+                                    type: (NSString *)type
+                                    freq: (NSString *)freq
+                                  passno: (NSString *)passno;
 // Imports manager
 - (IBAction) add: (id)sender;
 - (IBAction) remove: (id)sender;
