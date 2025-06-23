@@ -1,54 +1,61 @@
 {
   "images" : [
     {
+      "filename" : "nfs_manager32 3.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "16x16"
     },
     {
-      "filename" : "FileIcon_NFS_SGI_32 1.png",
+      "filename" : "nfs_manager32 2.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "16x16"
     },
     {
-      "filename" : "FileIcon_NFS_SGI_32.png",
+      "filename" : "nfs_manager32 1.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "32x32"
     },
     {
-      "filename" : "FileIcon_NFS_SGI.png",
+      "filename" : "nfs_manager32.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "32x32"
     },
     {
+      "filename" : "nfs_manager128.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "128x128"
     },
     {
+      "filename" : "nfs_manager512 3.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "128x128"
     },
     {
+      "filename" : "nfs_manager512 2.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "256x256"
     },
     {
+      "filename" : "nfs_manager512 1.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "256x256"
     },
     {
+      "filename" : "nfs_manager512.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "512x512"
     },
     {
+      "filename" : "nfs_manager.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "512x512"
