@@ -1,61 +1,44 @@
-//
-//  ImportsController.h
-//  NFSManager
-//
-//  Created by Gregory John Casamento on 9/2/23.
-//
+/*
+ * File: Sources/NFSManager/ImportsController.h
+ * Purpose: Controller to load and save fstab-style entries for Linux/macOS.
+ * Notes: No Objective‑C 2.0 features; manual retain/release in implementation.
+ * Style: GNU Coding Standards — two-space indent, brace placement, spaces
+ *        before function-like parentheses, block comments.
+ */
+
+#ifndef IMPORTS_CONTROLLER_H
+#define IMPORTS_CONTROLLER_H
 
 #import <Foundation/NSObject.h>
-#import <AppKit/NSTableView.h>
+#import <AppKit/AppKit.h>   /* NSTableView, NSWindow, IBAction */
 
-NS_ASSUME_NONNULL_BEGIN
-
-@class NSButton;
+@class NSTableView;
 @class NSWindow;
-@class NSPopUpButton;
-@class NSTextField;
 @class NSMutableArray;
+@class NSMutableDictionary;
+@class NSError;
 
-@interface ImportsController : NSObject <NSTableViewDelegate, NSTableViewDataSource>
+@interface ImportsController : NSObject <NSTableViewDataSource, NSTableViewDelegate>
+{
+  /* Outlets */
+  IBOutlet NSTableView *table;
+  IBOutlet NSWindow *expertOptionsWindow;
+  IBOutlet NSWindow *importFromServerWindow;
 
-// Ivars...
-@property (strong) NSMutableArray *nfsImportsConfig;
-@property (strong) NSArray *columnsArray;
-@property (strong) NSDictionary *columnNames;
-@property (strong) NSMutableArray *displayEntries;
+  /* Model */
+  NSMutableArray *nfsImportsConfig;   /* array of NSDictionary entries */
+}
 
-// Imports manager outlets
-@property (strong) IBOutlet NSWindow *window;
-@property (strong) IBOutlet NSWindow *expertOptionsWindow;
-@property (strong) IBOutlet NSWindow *importFromServerWindow;
-@property (strong) IBOutlet NSPopUpButton *readWritePopup;
-@property (strong) IBOutlet NSPopUpButton *mountThreadPopup;
-@property (strong) IBOutlet NSPopUpButton *setuidPopup;
-@property (strong) IBOutlet NSPopUpButton *retryPopup;
-@property (strong) IBOutlet NSTextField *mountPoint;
-
-@property (strong) IBOutlet NSButton *add;
-@property (strong) IBOutlet NSButton *remove;
-@property (strong) IBOutlet NSTableView *table;
-
-// Import From NFS Server outlets
-@property (strong) IBOutlet NSTextField *serverName;
-@property (strong) IBOutlet NSTextField *remoteDirectory;
-
-// Expert options outlets
-@property (strong) IBOutlet NSTextField *mountTimeout;
-@property (strong) IBOutlet NSTextField *mountRetries;
-@property (strong) IBOutlet NSTextField *nfsTimeout;
-@property (strong) IBOutlet NSTextField *nfsRetries;
-@property (strong) IBOutlet NSTextField *readBufferSize;
-@property (strong) IBOutlet NSTextField *writeBufferSize;
-@property (strong) IBOutlet NSTextField *serverIPPort;
-
-// Load the raw file and convert it into our data structure...
+/* Loading and saving */
 - (NSMutableArray *) loadFstabIntoDictionary;
+- (BOOL) saveToSystemFstabWithError: (NSError **)error;
+
+/* Table setup */
 - (void) setupTableColumns;
 - (void) removeTableColumns;
 - (void) refreshData;
+
+/* Entry builder */
 - (NSMutableDictionary *) buildEntrySpec: (NSString *)spec
                                     file: (NSString *)file
                                  vfsType: (NSString *)vfsType
@@ -63,7 +46,8 @@ NS_ASSUME_NONNULL_BEGIN
                                     type: (NSString *)type
                                     freq: (NSString *)freq
                                   passno: (NSString *)passno;
-// Imports manager
+
+/* Actions */
 - (IBAction) add: (id)sender;
 - (IBAction) remove: (id)sender;
 - (IBAction) select: (id)sender;
@@ -72,14 +56,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (IBAction) selectSetuidAction: (id)sender;
 - (IBAction) selectRetryMethod: (id)sender;
 
-// Expert options
+/* Expert options */
 - (IBAction) setExpertOptions: (id)sender;
 - (IBAction) cancelExpertOptions: (id)sender;
 
-// Import
-- (IBAction)cancelImport:(id)sender;
-- (IBAction)okImport:(id)sender;
+/* Import */
+- (IBAction) cancelImport: (id)sender;
+- (IBAction) okImport: (id)sender;
 
 @end
 
-NS_ASSUME_NONNULL_END
+#endif /* IMPORTS_CONTROLLER_H */
