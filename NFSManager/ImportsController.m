@@ -5,6 +5,8 @@
 //  Created by Gregory John Casamento on 9/2/23.
 //
 
+#import <CoreFoundation/CFCGTypes.h>
+
 #import <Foundation/NSArray.h>
 #import <Foundation/NSDictionary.h>
 #import <Foundation/NSString.h>
