@@ -113,10 +113,15 @@
                             file:[components objectAtIndex:1]
                          vfsType:[components objectAtIndex:2]
                         mountOps:[components objectAtIndex:3]
+#ifdef GNUSTEP		  
+                            type:@""
+                            freq:[components objectAtIndex:4]
+                          passno:[components objectAtIndex:5]];
+#else
                             type:[components objectAtIndex:4]
                             freq:[components objectAtIndex:5]
                           passno:[components objectAtIndex:6]];
-        
+#endif	
         [fstabArray addObject: entry];
 
         // Only add NFS to display
