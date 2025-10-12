@@ -164,8 +164,8 @@
 {
     if ([self.mountPoint.stringValue isEqualToString: @""])
     {
-        NSRunAlertPanelRelativeToWindow(@"Mount Point", @"Specify mount point",
-                                        @"OK", nil, nil, self.window);
+        NSRunAlertPanel(@"Mount Point", @"Specify mount point",
+                        @"OK", nil, nil);
     }
     else
     {
