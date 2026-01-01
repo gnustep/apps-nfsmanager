@@ -1,0 +1,1 @@
+{CFBundlExecutable = "$(EXECUTABLE_NAME)"; CFBundleDevelopmentRegion = "$(DEVELOPMENT_LANGUAGE)"; CFBundleIdentifier = "com.blacklotus.NFSManager"; CFBundleVersion = 1; NSHumanReadableCopyright = ""; NSIcon = "nfs_manager32 1.png"; NSMainNibFile = MainMenu; NSPrincipalClass = NSApplication; }

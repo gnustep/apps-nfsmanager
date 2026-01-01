@@ -1,0 +1,29 @@
+{
+    FILESTABLE = {
+	CLASSES = (
+	    "NFSManager/main.m",
+	    "NFSManager/NFSImportParameters.m",
+	    "NFSManager/AppDelegate.m",
+	    "NFSManager/ImportsController.m",
+	    "NFSManager/ExportsController.m"
+	);
+	FRAMEWORKS = (
+	);
+	"H_FILES" = (
+	);
+	IMAGES = (
+	    "NFSManager/Assets.xcassets/AppIcon.appiconset/nfs_manager32\\ 1.png"
+	);
+	INTERFACES = (
+	    "NFSManager/Base.lproj/MainMenu.xib"
+	);
+	"OTHER_LINKED" = (
+	    "NFSManager/Assets.xcassets",
+	    "NFSManagerInfo.plist"
+	);
+    };
+    LANGUAGE = English;
+    "NEXTSTEP_BUILDTOOL" = gnumake;
+    PROJECTNAME = NFSManager;
+    PROJECTTYPE = Application;
+}
