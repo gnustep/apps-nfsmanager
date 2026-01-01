@@ -8,6 +8,9 @@
 #import <AppKit/NSControl.h>
 #import <AppKit/NSOpenPanel.h>
 #import <AppKit/NSApplication.h>
+#import <AppKit/NSButton.h>
+#import <AppKit/NSPopUpButton.h>
+#import <AppKit/NSTableColumn.h>
 
 #import "ExportsController.h"
 
