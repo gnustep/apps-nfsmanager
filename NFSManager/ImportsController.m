@@ -5,8 +5,6 @@
 //  Created by Gregory John Casamento on 9/2/23.
 //
 
-#import <CoreFoundation/CFCGTypes.h>
-
 #import <Foundation/NSArray.h>
 #import <Foundation/NSDictionary.h>
 #import <Foundation/NSString.h>
@@ -15,10 +13,13 @@
 #import <AppKit/NSTextField.h>
 #import <AppKit/NSPopUpButton.h>
 #import <AppKit/NSOpenPanel.h>
+#import <AppKit/NSPanel.h>
 
 #import "ImportsController.h"
 
 @implementation ImportsController
+
+static NSString *NFSFstabPath = @"/etc/fstab";
 
 - (instancetype) init
 {
@@ -38,8 +39,6 @@
                         @"Pass", @"fs_passno", nil];
         self.displayEntries = [[NSMutableArray alloc] init];
         self.nfsImportsConfig = [self loadFstabIntoDictionary];
-        
-        NSLog(@"fstab = %@", _nfsImportsConfig);
     }
     return self;
 }
@@ -78,9 +77,8 @@
 - (NSMutableArray *) loadFstabIntoDictionary
 {
     NSMutableArray *fstabArray = [[NSMutableArray alloc] init];
-    NSString *filePath = @"/etc/fstab";
     NSError *error = nil;
-    NSString *fileContents = [[NSString alloc] initWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
+    NSString *fileContents = [[NSString alloc] initWithContentsOfFile:NFSFstabPath encoding:NSUTF8StringEncoding error:&error];
     if (fileContents == nil)
     {
         if (error != nil)
@@ -161,6 +159,66 @@
     [self.table reloadData];
 }
 
+- (NSString *)serializedFstab
+{
+    NSMutableArray *lines = [NSMutableArray array];
+
+    for (NSDictionary *entry in self.nfsImportsConfig)
+    {
+        NSString *spec = [entry objectForKey: @"fs_spec"] ?: @"";
+        NSString *file = [entry objectForKey: @"fs_file"] ?: @"";
+        NSString *vfsType = [entry objectForKey: @"fs_vfstype"] ?: @"";
+        NSString *mountOps = [entry objectForKey: @"fs_mntops"] ?: @"defaults";
+        NSString *type = [entry objectForKey: @"fs_type"] ?: @"";
+        NSString *freq = [entry objectForKey: @"fs_freq"] ?: @"0";
+        NSString *passno = [entry objectForKey: @"fs_passno"] ?: @"0";
+
+        if ([spec length] == 0 || [file length] == 0 || [vfsType length] == 0)
+        {
+            continue;
+        }
+
+        if ([type length] > 0)
+        {
+            [lines addObject: [NSString stringWithFormat: @"%@\t%@\t%@\t%@\t%@\t%@\t%@",
+                               spec, file, vfsType, mountOps, type, freq, passno]];
+        }
+        else
+        {
+            [lines addObject: [NSString stringWithFormat: @"%@\t%@\t%@\t%@\t%@\t%@",
+                               spec, file, vfsType, mountOps, freq, passno]];
+        }
+    }
+
+    NSString *contents = [lines componentsJoinedByString: @"\n"];
+    if ([contents length] > 0)
+    {
+        contents = [contents stringByAppendingString: @"\n"];
+    }
+    return contents;
+}
+
+- (BOOL)saveFstabToDisk
+{
+    NSError *error = nil;
+    BOOL saved = [[self serializedFstab] writeToFile:NFSFstabPath
+                                         atomically:YES
+                                           encoding:NSUTF8StringEncoding
+                                              error:&error];
+    if (saved == NO)
+    {
+        NSRunAlertPanelRelativeToWindow(@"Unable to Save Imports",
+                                        @"Could not write %@.\n\n%@",
+                                        @"OK",
+                                        nil,
+                                        nil,
+                                        self.window,
+                                        NFSFstabPath,
+                                        [error localizedDescription]);
+    }
+    return saved;
+}
+
 - (NSMutableDictionary *) buildEntrySpec: (NSString *)spec
                                     file: (NSString *)file
                                  vfsType: (NSString *)vfsType
@@ -216,6 +274,22 @@
     [self refreshData];
 }
 
+- (IBAction) ok: (id)sender
+{
+    if ([self saveFstabToDisk])
+    {
+        [self refreshData];
+        [self.window performClose: self];
+    }
+}
+
+- (IBAction) revert: (id)sender
+{
+    [self.displayEntries removeAllObjects];
+    self.nfsImportsConfig = [self loadFstabIntoDictionary];
+    [self refreshData];
+}
+
 // Imports Delegate/DataSource
 - (IBAction) selectRetryMethod: (id)sender
 {
@@ -253,20 +327,19 @@
 - (IBAction) select: (id)sender
 {
     NSOpenPanel *panel = [NSOpenPanel openPanel];
-    NSModalResponse response = [panel runModal];
-    
     panel.canChooseDirectories = YES;
     panel.canChooseFiles = NO;
+    NSModalResponse response = [panel runModal];
     if (response == NSModalResponseOK)
     {
-        self.mountPoint.stringValue = panel.filename;
+        self.mountPoint.stringValue = panel.URL.path;
     }
 }
 
 // Expert options
 - (IBAction) setExpertOptions: (id)sender
 {
-    [self.expertOptionsWindow makeKeyAndOrderFront: self];
+    [self.expertOptionsWindow performClose: self];
 }
 
 - (IBAction) cancelExpertOptions: (id)sender
@@ -283,30 +356,59 @@
     if ([sName isEqualToString: @""] == NO
         && [rDir isEqualToString: @""] == NO)
     {
-        NSString *remote = [NSString stringWithFormat: @"%@@%@", sName, rDir];
-        /*
-         @property (strong) IBOutlet NSPopUpButton *readWritePopup;
-         @property (strong) IBOutlet NSPopUpButton *mountThreadPopup;
-         @property (strong) IBOutlet NSPopUpButton *setuidPopup;
-         @property (strong) IBOutlet NSPopUpButton *retryPopup;
-         */
+        NSString *remote = [NSString stringWithFormat: @"%@:%@", sName, rDir];
+        NSMutableArray *optionTokens = [NSMutableArray array];
+
         NSInteger rw =  [self.readWritePopup indexOfSelectedItem];
         NSString *readWrite = (rw == 0) ? @"rw":@"ro";
+        [optionTokens addObject: readWrite];
+
         NSInteger mnt =  [self.mountThreadPopup indexOfSelectedItem];
-        NSInteger suid =  [self.mountThreadPopup indexOfSelectedItem];
-        NSString *ops = [NSString stringWithFormat: @"%@", readWrite];
-        
-        if (mnt == 0)
+        [optionTokens addObject: (mnt == 0) ? @"bg" : @"fg"];
+
+        NSInteger suid =  [self.setuidPopup indexOfSelectedItem];
+        [optionTokens addObject: (suid == 0) ? @"suid" : @"nosuid"];
+
+        NSInteger retry = [self.retryPopup indexOfSelectedItem];
+        if (retry == 2)
         {
-            NSString *mount = (mnt == 0) ? @"bg":@"";
-            ops = [ops stringByAppendingFormat: @",%@", mount];
+            [optionTokens addObject: @"soft"];
         }
-        
-        if (suid == 0)
+        else
         {
-            NSString *suidString = (suid == 0) ? @"suid":@"";
-            ops = [ops stringByAppendingFormat: @",%@", suidString];
+            [optionTokens addObject: @"hard"];
         }
+
+        NSDictionary *expertOptions = [NSDictionary dictionaryWithObjectsAndKeys:
+                                       @"retry", @"mountRetries",
+                                       @"timeo", @"nfsTimeout",
+                                       @"retrans", @"nfsRetries",
+                                       @"rsize", @"readBufferSize",
+                                       @"wsize", @"writeBufferSize",
+                                       @"port", @"serverIPPort",
+                                       nil];
+        NSDictionary *expertFields = [NSDictionary dictionaryWithObjectsAndKeys:
+                                      self.mountRetries, @"mountRetries",
+                                      self.nfsTimeout, @"nfsTimeout",
+                                      self.nfsRetries, @"nfsRetries",
+                                      self.readBufferSize, @"readBufferSize",
+                                      self.writeBufferSize, @"writeBufferSize",
+                                      self.serverIPPort, @"serverIPPort",
+                                      nil];
+        for (NSString *key in expertOptions)
+        {
+            NSTextField *field = [expertFields objectForKey: key];
+            NSString *value = [field.stringValue stringByTrimmingCharactersInSet:
+                               [NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            if ([value length] > 0)
+            {
+                [optionTokens addObject: [NSString stringWithFormat: @"%@=%@",
+                                          [expertOptions objectForKey: key],
+                                          value]];
+            }
+        }
+
+        NSString *ops = [optionTokens componentsJoinedByString: @","];
         
         NSMutableDictionary *entry =
             [self buildEntrySpec: remote

@@ -255,7 +255,7 @@
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="cancelImport:" target="e2E-vG-thR" id="Z6z-d7-o8t"/>
+                            <action selector="revert:" target="e2E-vG-thR" id="Z6z-d7-o8t"/>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6gB-Mf-VD5">
@@ -268,6 +268,9 @@
 DQ
 </string>
                         </buttonCell>
+                        <connections>
+                            <action selector="ok:" target="e2E-vG-thR" id="YmN-C2-NY9"/>
+                        </connections>
                     </button>
                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N1B-A0-Zke">
                         <rect key="frame" x="22" y="75" width="120" height="16"/>

@@ -9,6 +9,7 @@
 #import <AppKit/NSButton.h>
 #import <AppKit/NSControl.h>
 #import <AppKit/NSOpenPanel.h>
+#import <AppKit/NSPanel.h>
 #import <AppKit/NSPopUpButton.h>
 #import <AppKit/NSTableColumn.h>
 
@@ -19,6 +20,8 @@
 @end
 
 @implementation ExportsController
+
+static NSString *NFSExportsPath = @"/etc/exports";
 
 - (instancetype)init
 {
@@ -40,9 +43,8 @@
 
 - (void)loadExportsFromDisk
 {
-  NSString *filePath = @"/etc/exports";
   NSError *error = nil;
-  NSString *fileContents = [NSString stringWithContentsOfFile:filePath
+  NSString *fileContents = [NSString stringWithContentsOfFile:NFSExportsPath
                              encoding:NSUTF8StringEncoding
                               error:&error];
   if (fileContents == nil)
@@ -85,6 +87,57 @@
   }
 }
 
+- (NSString *)serializedExports
+{
+  NSMutableArray *lines = [NSMutableArray array];
+  for (NSDictionary *entry in self.exportEntries)
+  {
+    NSString *path = [entry objectForKey:@"path"] ?: @"";
+    NSString *options = [entry objectForKey:@"options"] ?: @"";
+    if ([path length] == 0)
+    {
+      continue;
+    }
+
+    if ([options length] > 0)
+    {
+      [lines addObject:[NSString stringWithFormat:@"%@ %@", path, options]];
+    }
+    else
+    {
+      [lines addObject:path];
+    }
+  }
+
+  NSString *contents = [lines componentsJoinedByString:@"\n"];
+  if ([contents length] > 0)
+  {
+    contents = [contents stringByAppendingString:@"\n"];
+  }
+  return contents;
+}
+
+- (BOOL)saveExportsToDisk
+{
+  NSError *error = nil;
+  BOOL saved = [[self serializedExports] writeToFile:NFSExportsPath
+                                         atomically:YES
+                                           encoding:NSUTF8StringEncoding
+                                              error:&error];
+  if (saved == NO)
+  {
+    NSRunAlertPanelRelativeToWindow(@"Unable to Save Exports",
+                                    @"Could not write %@.\n\n%@",
+                                    @"OK",
+                                    nil,
+                                    nil,
+                                    self.window,
+                                    NFSExportsPath,
+                                    [error localizedDescription]);
+  }
+  return saved;
+}
+
 - (void)refreshTable
 {
   [self.table reloadData];
@@ -106,9 +159,17 @@
     return;
   }
 
-  NSUInteger idx = [self.exportEntries indexOfObjectPassingTest:^BOOL(NSDictionary *obj, NSUInteger idx, BOOL *stop) {
-    return [[obj objectForKey:@"path"] isEqualToString:path];
-  }];
+  NSUInteger idx = NSNotFound;
+  NSUInteger count = [self.exportEntries count];
+  for (NSUInteger i = 0; i < count; i++)
+  {
+    NSDictionary *obj = [self.exportEntries objectAtIndex:i];
+    if ([[obj objectForKey:@"path"] isEqualToString:path])
+    {
+      idx = i;
+      break;
+    }
+  }
 
   NSMutableDictionary *entry = nil;
   if (idx != NSNotFound)
@@ -173,9 +234,11 @@
 
 - (IBAction)ok:(id)sender
 {
-  // Persisting to /etc/exports typically requires elevated privileges; we only refresh UI here.
-  [self refreshTable];
-  [self.window performClose: self];
+  if ([self saveExportsToDisk])
+  {
+    [self refreshTable];
+    [self.window performClose: self];
+  }
 }
 
 - (IBAction)allowUnknownUsers:(id)sender

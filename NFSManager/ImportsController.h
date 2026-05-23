@@ -66,6 +66,8 @@ NS_ASSUME_NONNULL_BEGIN
 // Imports manager
 - (IBAction) add: (id)sender;
 - (IBAction) remove: (id)sender;
+- (IBAction) ok: (id)sender;
+- (IBAction) revert: (id)sender;
 - (IBAction) select: (id)sender;
 - (IBAction) selectMountPermissions: (id)sender;
 - (IBAction) selectMountThread: (id)sender;
